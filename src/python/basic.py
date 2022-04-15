@@ -1,3 +1,4 @@
-import example
+import src.python.example as example
 
-help(example)
+def f(x):
+    return 0
