@@ -2,7 +2,10 @@ import src.python.basic as basic
 import src.python.example as example
 import numpy as np
 
-print(example.func(np.array([1,2])))
+a = np.array([1,2,3,4,5])
 
-print(basic.f(1))
+a_o = example.array_func(a)
 
+print(a_o)
+
+print(type(a_o))
