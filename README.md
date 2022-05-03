@@ -10,3 +10,14 @@ en Ubuntu,
 
 `python3 -m numpy.f2py -c ../fortran/example.f95 -m example`
 
+# TODO
+### MOntecarlo integration
++ Pseudorandom number generator
+        + bit shifting
+        + maybe middle square weyl sequence
++ Check statistical randomness
++ Mock up in python only
++ timing of the time-critical sections
++ implementation of time-critical sections in fortran
++ implementation of fortran in pyton
+
