@@ -15,6 +15,7 @@ en Ubuntu,
 + Pseudorandom number generator
         + bit shifting
         + maybe middle square weyl sequence
+        http://arxiv-export-lb.library.cornell.edu/pdf/1704.00358
 + Check statistical randomness
 + Mock up in python only
 + timing of the time-critical sections
