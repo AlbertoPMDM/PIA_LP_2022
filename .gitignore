@@ -69,3 +69,4 @@ pilin.txt
 *.exe
 *.dll
 *.py[ocd]
+*.mod
