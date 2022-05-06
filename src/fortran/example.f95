@@ -1,23 +1,14 @@
+function rnd(a, b, arr) result(arr_o)
+    implicit none
+    real*8, intent(in) :: a, b
+    real*8, dimension(:) :: arr
+    real*8, dimension(size(arr)) :: arr_o
+    
+    CALL random_number(arr)
 
-subroutine func(x, x_o)
-implicit none
-real*8,intent(in) :: x
-real*8,intent(out) :: x_o
+    arr_o = (b-a) * arr + a
 
-x_o = x**2 + x + 1
-end subroutine func
-
-function func2() result(x_o)
-implicit none
-real*8 :: x_o, xtemp
-integer :: i
-
-x_o = 0
-do i = 1, 10000000
-xtemp = i
-x_o = x_o + (xtemp**2 + xtemp + 1)
-end do
-end function func2
+end function rnd
 
 function array_func(a) result(a_o)
     implicit none
