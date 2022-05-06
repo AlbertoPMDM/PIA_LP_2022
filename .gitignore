@@ -60,8 +60,10 @@ GTAGS
 *.zip
 
 .vscode
+env
 a.exe
 sex.f95
+pilin.txt
 .tests/__pycache__
 .python/__pycache__
 *.exe
