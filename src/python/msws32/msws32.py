@@ -1,5 +1,4 @@
 from ctypes import c_uint64
-from sre_parse import State
 
 class msws32:
     '''
@@ -23,12 +22,10 @@ class msws32:
         w=c_uint64(0)
         s=c_uint64(seed)
         for _ in range(n):
-            x = c_uint64(x.value)
             x = c_uint64(x.value **2)
             w = c_uint64(w.value + s.value)
             x = c_uint64(x.value + w.value)
-            x = c_uint64((x.value >> 32 | x.value << 32) & 0xFFFFFFFF)
-            yield x.value
+            yield (x.value >> 32 | x.value << 32) & 0xFFFFFFFF
 
     def randint32(self, n:int, state:list, seed:int = _SEED) -> int:
         '''
@@ -42,16 +39,14 @@ class msws32:
             x = c_uint64(x.value **2)
             w = c_uint64(w.value + s.value)
             x = c_uint64(x.value + w.value)
-            x = c_uint64((x.value >> 32 | x.value << 32) & 0xFFFFFFFF)
-            yield x.value
+            yield (x.value >> 32 | x.value << 32) & 0xFFFFFFFF
         x = c_uint64(x.value)
         x = c_uint64(x.value **2)
         w = c_uint64(w.value + s.value)
         x = c_uint64(x.value + w.value)
-        x = c_uint64((x.value >> 32 | x.value << 32) & 0xFFFFFFFF)
         state[0] = x.value
         state[1] = w.value
-        yield x.value
+        yield (x.value >> 32 | x.value << 32) & 0xFFFFFFFF
 
     def _rand32(min:float, max:float, n:int, seed:int = _SEED) -> float:
         '''
@@ -65,7 +60,7 @@ class msws32:
             x = c_uint64(x.value **2)
             w = c_uint64(w.value + s.value)
             x = c_uint64(x.value + w.value)
-            yield ((max-min)/(2**32)) * ((x.value >> 32 | x.value << 32) & 0xFFFFFFFF) + min
+            yield ((max-min)/(4294967295)) * ((x.value >> 32 | x.value << 32) & 0xFFFFFFFF) + min
 
     def rand32(self, min:float, max:float, n:int, state:list, seed:int = _SEED) -> int:
         '''
@@ -79,20 +74,18 @@ class msws32:
             x = c_uint64(x.value **2)
             w = c_uint64(w.value + s.value)
             x = c_uint64(x.value + w.value)
-            x = c_uint64((x.value >> 32 | x.value << 32) & 0xFFFFFFFF)
-            yield ((max-min)/(2**32)) * x.value + min
+            yield ((max-min)/(2**32)) * ((x.value >> 32 | x.value << 32) & 0xFFFFFFFF) + min
         x = c_uint64(x.value)
         x = c_uint64(x.value **2)
         w = c_uint64(w.value + s.value)
         x = c_uint64(x.value + w.value)
-        x = c_uint64((x.value >> 32 | x.value << 32) & 0xFFFFFFFF)
         state[0] = x.value
         state[1] = w.value
-        yield ((max-min)/(2**32)) * x.value + min
+        yield ((max-min)/(2**32)) * ((x.value >> 32 | x.value << 32) & 0xFFFFFFFF) + min
     
 if __name__=='__main__':
     rand = msws32()
-    for i, j in enumerate(rand.rand32(1, 2, 100, rand.state)):
-        print(f'{i}, {j}')
+    for i in msws32._randint32(10):
+        print(i)
     # a = [i for i in msws32.randint32(1)]
     # print(a)
