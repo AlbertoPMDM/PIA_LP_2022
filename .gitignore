@@ -70,3 +70,4 @@ pilin.txt
 *.dll
 *.py[ocd]
 *.mod
+*.out
