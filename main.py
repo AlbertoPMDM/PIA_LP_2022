@@ -1,11 +1,11 @@
-from src.python.msws32.msws32 import msws32
 import numpy as np
 import matplotlib.pyplot as plt
-import src.python.fmsws32 as fmsws32
 
-areas = fmsws32.msws.rand32(10)
-print(areas)
-print(type(areas))
+from src.python.msws32.msws32 import msws32
+import src.python.xorshift256 as xs
+
+a = np.zeros(100000)
+areas = xs.rnd(0,1,a)
 # rand = msws32()
 # a = 0
 # b = np.pi
@@ -32,7 +32,6 @@ print(type(areas))
 #     answer = (b-a)/n*integral
 
 #     areas.append(answer)
-
 plt.title('Distribution of Areas Calculated')
 plt.hist(areas, bins = 30, ec = 'black')
 plt.xlabel('Areas')
