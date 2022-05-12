@@ -1,5 +1,6 @@
 from ctypes import c_uint64
 
+#TODO change from generators to filling premade ctypes arrays
 class msws32:
     '''
     class for a middle square wayle sequence random number generator
