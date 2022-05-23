@@ -1,42 +1,28 @@
-# UwU
+# Integracion de Monte Carlo
 
-Se tienen que compilar los archivos de fortran antes de correr lo de python
+Se utilizó el compilador de fortran de gnu, junto con el compilador default de la instalación de windows que tengo, auqneu preferiblemente hacerlo en linux, pues tiene menos complicaciones.
 
-``py -m numpy.f2py  -c --fcompiler=gnu95 --compiler=mingw32 ../fortran/example.f95 -m example
+Se tienen que compilar los archivos de fortran antes de correr lo de python, desde el folder de python correr
 
-py py -m numpy.f2py  -c --fcompiler=gnu95 --compiler=mingw32 src/fortran/fmsws32.f95 -m fmsws32 -h fmsws32.pyf
-
-py -m numpy.f2py src/fortran/fmsws32.f95 -m fmsws32 -h fmsws32.pyf
+`py -m numpy.f2py  -c --fcompiler=gnu95 --compiler=mingw32 ../fortran/faverage.f95 -m faverage`
+`py -m numpy.f2py  -c --fcompiler=gnu95 --compiler=mingw32 ../fortran/xorshift256.f95 -m xorshift256`
 
 esa linea de arriba sirvio para mi en Win10
 
 en Ubuntu, 
 
-`python3 -m numpy.f2py -c ../fortran/example.f95 -m example`
+`python3 -m numpy.f2py -c ../fortran/xorshift256.f95 -m xorshift256`
+`python3 -m numpy.f2py -c ../fortran/faverage.f95 -m faverage`
 
-# TODO
-### MOntecarlo integration
-+ Pseudorandom number generator
-        + bit shifting
-        + maybe middle square weyl sequence
-        http://arxiv-export-lb.library.cornell.edu/pdf/1704.00358
-+ Check statistical randomness
-+ Mock up in python only
-+ timing of the time-critical sections
-+ implementation of time-critical sections in fortran
-+ implementation of fortran in pyton
+En `main.py` se encuentra un ejemplo de como se utiliza, devuelve un histograma de los diferentes valores para la integral obtenidos
 
-program cum
-    use msws
-    implicit none
-    integer*8 :: n
-    double precision, allocatable, dimension(:) :: a
-    
-    n = 10
+los archivos `*_graphs.py` producen imagenes de los tiempos que tarda en correr el generador de numeros aleatorios en el sistema.
 
-    a = msws32(0_8, 1_8, n)
+Referencias
 
-    print *, a
-    
-end program cum
+https://en.wikipedia.org/wiki/Law_of_large_numbers
+https://en.wikipedia.org/wiki/Monte_Carlo_integration
+https://www.youtube.com/watch?v=WAf0rqwAvgg
+http://arxiv-export-lb.library.cornell.edu/pdf/1704.00358
+
 
