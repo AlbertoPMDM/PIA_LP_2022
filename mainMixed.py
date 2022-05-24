@@ -1,4 +1,3 @@
-from msilib.schema import Complus
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -11,7 +10,7 @@ from numpy import pi, euler_gamma
 
 a = float(input('Ingresa el limite inferior de integración\n'))
 b = float(input('Ingresa el limite superior de integración\n'))
-n = 10000
+n = 1000
 
 func = input('''
 Ingresa la funcion a evaluar
@@ -36,17 +35,17 @@ exec(
     )
 
 areas = []
-n_areas = 100000
+n_areas = 1000
 
 v_f = np.vectorize(f)
 for _ in range(n_areas):
     areas.append(fv.faverage(a, b, v_f(xs.rnd(a,b,np.zeros(n)))))
 
 plt.title('Distribution of Areas Calculated')
-plt.hist(areas, bins = 30, ec = 'black')
+plt.hist(areas, bins = 30, ec = 'black', range=(min(areas), max(areas)))
 plt.xlabel('Areas')
 plt.ylabel('Freq')
-
+print((min(areas), max(areas)))
 print(f'La imagen se ha producido\nSe utilizaron {n_areas} areas y {n} evaluaciones para cada area')
 
-plt.savefig('mixedResult.png')
+plt.show()

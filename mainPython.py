@@ -54,4 +54,6 @@ plt.ylabel('Freq')
 
 print(f'La imagen se ha producido\nSe utilizaron {n_areas} areas y {n} evaluaciones para cada area')
 
-plt.savefig('pythonResult.png')
+plt.show()
+
+# plt.savefig('pythonResult.png')
